@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BinarySearchTask1
+namespace Task1
 {
     public class BinarySearcher
     {
