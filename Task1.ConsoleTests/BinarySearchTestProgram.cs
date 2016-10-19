@@ -7,7 +7,7 @@ using Task1;
 
 namespace Task1.ConsoleTests
 {
-    class Program
+    class BinarySearchTestProgram
     {
         static private int[] oddArrayDifference = new int[7] { 0, 2, 4, 6, 8, 10, 24 };
         static private int[] evenArrayDifference = new int[6] { 0, 2, 4, 6, 8, 25 };
