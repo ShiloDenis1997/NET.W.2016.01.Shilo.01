@@ -213,7 +213,7 @@ namespace Task1.SetConsoleTests
             }
             foreach (int x in arTrue)
             {
-                if (set1.Contains(x))
+                if (!set1.Contains(x))
                     return false;
             }
             return true;
