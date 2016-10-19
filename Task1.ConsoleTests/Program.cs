@@ -9,67 +9,119 @@ namespace Task1.ConsoleTests
 {
     class Program
     {
-        private int[] oddArrayDifference = new int[7] { 0, 2, 4, 6, 8, 10, 24 };
-        private int[] evenArrayDifference = new int[6] { 0, 2, 4, 6, 8, 25 };
-        private int[] oddArraySame = new int[11] { 1, 1, 3, 3, 3, 5, 5, 7, 7, 7, 7 };
-        private int[] evenArraySame = new int[10] { 1, 1, 3, 3, 3, 5, 7, 7, 7, 7 };
+        static private int[] oddArrayDifference = new int[7] { 0, 2, 4, 6, 8, 10, 24 };
+        static private int[] evenArrayDifference = new int[6] { 0, 2, 4, 6, 8, 25 };
+        static private int[] oddArraySame = new int[11] { 1, 1, 3, 3, 3, 5, 5, 7, 7, 7, 7 };
+        static private int[] evenArraySame = new int[10] { 1, 1, 3, 3, 3, 5, 7, 7, 7, 7 };
 
-        private int[,] testOddNegativeSame = new int[,]
+        static private int[,] testOddNegativeSame = new int[,]
         {
-            { -1,  2,  4,  6,  8 },
-            { -1, -3, -6, -8, -12 }
+            {-1, -1 },
+            {2, -3 },
+            {4, -6 },
+            {6, -8 },
+            {8, -12 },
         };
 
-        private int[,] testEvenNegativeSame = new int[,]
+        static private int[,] testEvenNegativeSame = new int[,]
         {
-            { -1,  2,  4,  6,  8},
-            { -1, -3, -6, -7, -11}
+            {-1, -1 },
+            {2, -3 },
+            {4, -6 },
+            {6, -7 },
+            {8, -11 },
         };
 
-        private int[,] testEvenNegativeDifference = new int[,]
+        static private int[,] testEvenNegativeDifference = new int[,]
         {
-            { -5,  1,  3,  5,  7,  9,  26 },
-            { -1, -2, -3, -4,  -5, -6, -7 }
+            {-5, -1 },
+            {1, -2 },
+            {3, -3 },
+            {5, -4 },
+            {7, -5 },
+            {9, -6 },
+            {26, -7 },
         };
 
-        private int[,] testOddNegativeDifference = new int[,]
+        static private int[,] testOddNegativeDifference = new int[,]
         {
-            { -5,  1,  3,  5,  7,  9,  11, 26 },
-            { -1, -2, -3, -4,  -5, -6, -7, -8 }
+            {-5, -1 },
+            {1, -2 },
+            {3, -3 },
+            {5, -4 },
+            {7, -5 },
+            {9, -6 },
+            {11, -7 },
+            {26, -8 },
         };
 
-        private int[,] testEvenPositiveSame = new int[,]
+        static private int[,] testEvenPositiveSame = new int[,]
         {
-            { 1, 3, 5, 7, },
-            { 1, 4, 5, 9, }
+            {1, 1 },
+            {3, 4 },
+            {5, 5 },
+            {7, 9 },
         };
 
-        private int[,] testOddPositiveSame = new int[,]
+        static private int[,] testOddPositiveSame = new int[,]
         {
-            { 1, 3, 5, 7, },
-            { 1, 4, 6, 10, }
+            {1, 1 },
+            {3, 4 },
+            {5, 6 },
+            {7, 10 },
         };
 
-        private int[,] testEvenPositiveDifference = new int[,]
+        static private int[,] testEvenPositiveDifference = new int[,]
         {
-            { 0, 2, 4, 6, 8, 25},
-            { 0, 1, 2, 3, 4, 5}
+            {0, 0 },
+            {2, 1 },
+            {4, 2 },
+            {6, 3 },
+            {8, 4 },
+            {25, 5 },
         };
 
-        private int[,] testOddPositiveDifference = new int[,]
+        static private int[,] testOddPositiveDifference = new int[,]
         {
-            { 0, 2, 4, 6, 8, 10, 24},
-            { 0, 1, 2, 3, 4, 5, 6 },
+            {0, 0 },
+            {2, 1 },
+            {4, 2 },
+            {6, 3 },
+            {8, 4 },
+            {10, 5 },
+            {24, 6 },
         };
 
+        static int testNumber = 1;
         static void Main(string[] args)
         {
-            int[] array = new int[20];
-            Random rand = new Random();
-            for (int i = 0; i < array.Length; i++)
-                array[i] = rand.Next();
             
-            Console.WriteLine(BinarySearcher.BinarySearch(array, 40));
         }
+
+        public static void TestCase(int[] array, int[,] testCase)
+        {
+            for (int i = 0; i < testCase.GetLength(0); i++)
+            {
+                Console.WriteLine("Test #" + testNumber++);
+                Console.Write("Array to test: ");
+                foreach (int x in array)
+                {
+                    Console.Write(x + " ");
+                }
+                Console.WriteLine("\nValue to search: " + testCase[i, 0]);
+                int res = BinarySearcher.BinarySearch(array, testCase[i, 0]);
+                Console.WriteLine(String.Format("Expected: {0} \t Got: {1}",
+                        testCase[i, 1], res));
+                if (res == testCase[i, 1])
+                {
+                    Console.WriteLine("Ok");
+                }
+                else
+                {
+                    Console.WriteLine("Failed");
+                }
+            }
+        }
+        
     }
 }
