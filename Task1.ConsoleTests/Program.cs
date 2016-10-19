@@ -93,9 +93,25 @@ namespace Task1.ConsoleTests
         };
 
         static int testNumber = 1;
+        static int totalOk = 0;
+        static int totalFailed = 0;
+
         static void Main(string[] args)
         {
-            
+            //Positive tests
+            TestCase(oddArrayDifference, testOddPositiveDifference);
+            TestCase(oddArraySame, testOddPositiveSame);
+            TestCase(evenArrayDifference, testEvenPositiveDifference);
+            TestCase(evenArraySame, testEvenPositiveSame);
+
+            //Negative tests
+            TestCase(oddArrayDifference, testOddNegativeDifference);
+            TestCase(oddArraySame, testOddNegativeSame);
+            TestCase(evenArrayDifference, testEvenNegativeDifference);
+            TestCase(evenArraySame, testEvenNegativeSame);
+
+            Console.WriteLine(String.Format("Total OK: {0}\n Total FAILED: {1}",
+                        totalOk, totalFailed));
         }
 
         public static void TestCase(int[] array, int[,] testCase)
@@ -114,10 +130,12 @@ namespace Task1.ConsoleTests
                         testCase[i, 1], res));
                 if (res == testCase[i, 1])
                 {
+                    totalOk++;
                     Console.WriteLine("Ok");
                 }
                 else
                 {
+                    totalFailed++;
                     Console.WriteLine("Failed");
                 }
             }
